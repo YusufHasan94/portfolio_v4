@@ -15,7 +15,7 @@ const Hero = () => {
     className='py-[100px] flex items-center'
     >
     <div className='flex flex-col gap-10'>
-        <span className='font-semibold text-xl'>Hi, I'm Yusuf Hasan </span>
+        <span className='font-semibold text-xl'>Hi, I&apos;m Yusuf Hasan </span>
         <p className='font-semibold text-[80px]'>Professional Software Engineer</p>
         <p className='font-normal text-xl'>Focused on delivering impactful and scalable digital solutions.</p>
     </div>
