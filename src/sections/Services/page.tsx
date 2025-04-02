@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import frontend from "@/assets/services/frontend.webp"
 import fullstack from "@/assets/services/fullstack.webp"
 import wordpress from "@/assets/services/wordpress.webp"
@@ -28,7 +28,7 @@ const allServices = [
 interface props {
     title: string,
     description: string,
-    image: any
+    image: StaticImageData
 }
 
 
