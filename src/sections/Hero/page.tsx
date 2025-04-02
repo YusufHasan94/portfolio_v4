@@ -11,7 +11,7 @@ const Hero = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className='py-[100px] flex items-center justify-between'
+      className='py-40 flex items-center justify-between'
     >
       <div className='flex flex-col gap-10 w-7/12'>
         <p className='font-semibold text-[80px]'>Professional Software Engineer</p>

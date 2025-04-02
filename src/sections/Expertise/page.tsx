@@ -22,7 +22,7 @@ const Expertise = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className="mt-20"
+      className="py-20"
     >
       <h1 className="text-4xl font-semibold text-center">Areas of Expertise</h1>
       <div className="flex justify-center py-20 flex-wrap gap-10">
