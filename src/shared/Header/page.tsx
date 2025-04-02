@@ -10,7 +10,7 @@ const Header = () => {
         <li className='font-normal text-[17px] hover:font-medium'><a href="">About</a></li>
         <li className='font-normal text-[17px] hover:font-medium'><a href="">Contact</a></li>
       </ul>
-      <button className='font-normal text-[17px] px-3 py-2 border rounded-lg border-[#0a0a0a]'>
+      <button className='font-normal text-[17px] px-3 py-2 border rounded-lg border-[#4f53ff]'>
         <a href="#">Download CV</a>
       </button>
     </div>
