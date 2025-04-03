@@ -37,6 +37,7 @@ const Career = () => {
             whileInView={"show"}
             viewport={{ once: true }}
             className="py-20"
+            id="career"
         >
             <h1 className="text-4xl font-semibold text-start">Career Highlights</h1>
             <div className="flex py-20 gap-10">

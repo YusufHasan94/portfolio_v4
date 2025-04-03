@@ -18,7 +18,7 @@ const Hero = () => {
         <p className='font-normal text-xl'>Focused on delivering impactful and scalable digital solutions.</p>
         <div className='flex gap-5'>
           <button className='font-normal text-[17px] px-6 py-2 border rounded-lg border-[#4f53ff]'>
-            <a href="#">Hire Me</a>
+            <a href="#contact">Hire Me</a>
           </button>
           <button className='font-normal text-[17px] px-3 py-2 border rounded-lg bg-[#4f53ff] border-transparent text-white'>
             <a href="#">Download CV</a>

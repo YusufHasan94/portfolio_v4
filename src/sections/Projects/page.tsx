@@ -166,6 +166,7 @@ const Projects = () => {
             whileInView={"show"}
             viewport={{ once: true }}
             className="py-20"
+            id="projects"
         >
             <h1 className="text-4xl font-semibold text-start">Showcasing Reliable & Innovative Work</h1>
             <div className="flex justify-center py-20 flex-wrap gap-10">

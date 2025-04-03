@@ -23,6 +23,7 @@ const Expertise = () => {
       whileInView={"show"}
       viewport={{ once: true }}
       className="py-20"
+      id="skills"
     >
       <h1 className="text-4xl font-semibold text-start">Professional Skills & Technical Proficiency</h1>
       <div className="flex justify-center py-20 flex-wrap gap-10">

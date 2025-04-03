@@ -1,4 +1,5 @@
 import Career from "@/sections/Career/page";
+import Contact from "@/sections/Contact/page";
 import Expertise from "@/sections/Expertise/page";
 import Hero from "@/sections/Hero/page";
 import Projects from "@/sections/Projects/page";
@@ -12,6 +13,7 @@ export default function Home() {
       <Services/>
       <Projects/>
       <Career/>
+      <Contact/>
     </div>
   );
 }
