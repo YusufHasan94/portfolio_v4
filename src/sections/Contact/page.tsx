@@ -14,7 +14,7 @@ const Contact = () => {
     >
       <div className='flex flex-col gap-10 w-1/2'>
         <p className='font-semibold text-[40px]'>Looking to Work Together?</p>
-        <p className='font-normal text-xl'>Welcome! I'm always excited to connect, discuss new projects, or share insights on technology and innovation..</p>
+        <p className='font-normal text-xl'>Welcome! I&apos;m always excited to connect, discuss new projects, or share insights on technology and innovation..</p>
         <p className='uppercase font-semibold'>Available for work</p>
       </div>
       <div className="flex justify-center items-center">
