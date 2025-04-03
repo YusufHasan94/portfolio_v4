@@ -1,5 +1,6 @@
 import Expertise from "@/sections/Expertise/page";
 import Hero from "@/sections/Hero/page";
+import Projects from "@/sections/Projects/page";
 import Services from "@/sections/Services/page";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero/>
       <Expertise/>
       <Services/>
+      <Projects/>
     </div>
   );
 }

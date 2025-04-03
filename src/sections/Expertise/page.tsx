@@ -24,7 +24,7 @@ const Expertise = () => {
       viewport={{ once: true }}
       className="py-20"
     >
-      <h1 className="text-4xl font-semibold text-center">Areas of Expertise</h1>
+      <h1 className="text-4xl font-semibold text-center">Professional Skills & Technical Proficiency</h1>
       <div className="flex justify-center py-20 flex-wrap gap-10">
         {skills.map((skill, index) => (
           <span key={index} className="text-base px-4 py-2 bg-[#4F53FF] rounded-lg text-white font-semibold cursor-default">
