@@ -167,7 +167,7 @@ const Projects = () => {
             viewport={{ once: true }}
             className="py-20"
         >
-            <h1 className="text-4xl font-semibold text-center">Showcasing Reliable & Innovative Work</h1>
+            <h1 className="text-4xl font-semibold text-start">Showcasing Reliable & Innovative Work</h1>
             <div className="flex justify-center py-20 flex-wrap gap-10">
                 <div className="flex gap-10">
                     {projctsType.map((type, index) => (

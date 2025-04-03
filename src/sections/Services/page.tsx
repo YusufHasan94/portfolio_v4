@@ -47,7 +47,7 @@ const Services = () => {
             viewport={{ once: true }}
             className="py-20"
         >
-            <h1 className="text-4xl font-semibold text-center">Crafting Digital Solutions</h1>
+            <h1 className="text-4xl font-semibold text-start">Crafting Digital Solutions</h1>
             <div className="flex py-20 gap-10">
                 {
                     solutions.map((service, index) => (
