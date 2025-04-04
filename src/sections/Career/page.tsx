@@ -36,20 +36,20 @@ const Career = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: true }}
-            className="py-20"
+            className="py-10 lg:py-20"
             id="career"
         >
-            <h1 className="text-4xl font-semibold text-start">Career Highlights</h1>
-            <div className="flex py-20 gap-10">
+            <h1 className="text-3xl lg:text-4xl font-semibold text-start">Career Highlights</h1>
+            <div className="flex py-10 lg:py-20 gap-10">
                 {
                     milestones.map((milestone, index) => (
-                        <div key={index} className="border-b-2 border-[#4f53ff] rounded-lg px-7 py-4 flex items-center gap-5">
-                            <div className="w-[25%] flex flex-col">
+                        <div key={index} className="border-b-2 border-[#4f53ff] rounded-lg px-7 py-4 flex flex-col lg:flex-row items-start lg:items-center gap-5">
+                            <div className="lg:w-[25%] flex flex-col">
                                 <span className="font-semibold">{milestone.company}</span>
                                 <span className="text-2xl font-semibold">{milestone.title}</span>
                             </div>
-                            <p className="w-[60%] text-base font-normal px-10">{milestone.description}</p>
-                            <p className="w-[15%] capitalize font-semibold text-lg text-end">{milestone.stating}-{milestone.ending}</p>
+                            <p className="lg:w-[60%] text-base font-normal lg:px-10">{milestone.description}</p>
+                            <p className="lg:w-[15%] capitalize font-semibold text-lg text-end">{milestone.stating}-{milestone.ending}</p>
                         </div>
                     ))
                 }

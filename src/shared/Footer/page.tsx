@@ -4,15 +4,15 @@ import { FaArrowRight, FaGithub, FaLinkedin, FaRegCopyright } from 'react-icons/
 
 const Footer = () => {
   return (
-    <div className='bg-[#4F53FF] pt-20 pb-5'>
-      <div className='max-w-[1280px] mx-auto text-white'>
-        <div className='flex justify-between gap-10'>
-          <div className='w-72 flex flex-col justify-between'>
+    <div className='bg-[#4F53FF] pt-10 lg:pt-20 pb-5'>
+      <div className='max-w-[1280px] mx-auto text-white px-5'>
+        <div className='flex flex-col lg:flex-row justify-between gap-10'>
+          <div className='lg:w-72 flex flex-col justify-between'>
             <div>
               <span className='font-semibold text-2xl'>Yusuf Hasan</span>
               <p>Building reliable solutions with innovation and precision.</p>
             </div>
-            <p className='flex items-center gap-2'><FaRegCopyright /> 2025 Yusuf Hasan</p>
+            <p className='flex items-center gap-2 mt-5'><FaRegCopyright /> 2025 Yusuf Hasan</p>
           </div>
           <div className='flex flex-col gap-2'>
             <span className='font-semibold text-2xl'>Navigation</span>

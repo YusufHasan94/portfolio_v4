@@ -11,10 +11,10 @@ const Hero = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className='py-40 flex items-center justify-between'
+      className='py-10 lg:py-40 flex flex-col lg:flex-row items-center justify-between gap-20 lg:gap-0'
     >
-      <div className='flex flex-col gap-10 w-7/12'>
-        <p className='font-semibold text-[80px]'>Professional Software Engineer</p>
+      <div className='flex flex-col gap-10 lg:w-7/12'>
+        <p className='font-semibold text-4xl lg:text-[80px]'>Professional Software Engineer</p>
         <p className='font-normal text-xl'>Focused on delivering impactful and scalable digital solutions.</p>
         <div className='flex gap-5'>
           <button className='font-normal text-[17px] px-6 py-2 border rounded-lg border-[#4f53ff]'>
