@@ -27,9 +27,9 @@ const Footer = () => {
           <div className='flex flex-col gap-2'>
             <span className='font-semibold text-2xl'>Follow Me</span>
             <ul className='flex gap-4 flex-wrap'>
-              <li className='flex gap-2 items-center px-4 py-2 border border-white rounded-lg text-lg'><FaGithub /> Github</li>
-              <li className='flex gap-2 items-center px-4 py-2 border border-white rounded-lg text-lg'><FaLinkedin /> LinkedIn</li>
-              <li className='flex gap-2 items-center px-4 py-2 border border-white rounded-lg text-lg'><CgMail /> Gmail</li>
+              <li className='flex gap-2 items-center px-4 py-2 border border-white rounded-lg text-lg'><FaGithub /> <a href="https://github.com/YusufHasan94">Github</a></li>
+              <li className='flex gap-2 items-center px-4 py-2 border border-white rounded-lg text-lg'><FaLinkedin /><a href="https://www.linkedin.com/in/md-yusuf-hasan/">LinkedIn</a></li>
+              <li className='flex gap-2 items-center px-4 py-2 border border-white rounded-lg text-lg'><CgMail /> <a href="mailto:yhpolok@gmail.com">Gmail</a></li>
             </ul>
           </div>
         </div>
