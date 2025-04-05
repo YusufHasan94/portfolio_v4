@@ -33,9 +33,9 @@ const Header = () => {
           <div className='flex items-center justify-between'>
             <span className='font-semibold text-xl text-center'>Yusuf Hasan</span>
             {handleActive ?
-              <button onClick={() => handleToggle(false)} area-label="mobileMenuOpen"><AiOutlineCloseCircle style={{ fontSize: "30px" }} /></button>
+              <button onClick={() => handleToggle(false)} id="al" area-label="mobileMenuOpen"><AiOutlineCloseCircle style={{ fontSize: "30px" }} /></button>
               :
-              <button onClick={() => handleToggle(true)} area-label="mobileMenuClose"><GiHamburgerMenu style={{ fontSize: "30px" }} /></button>
+              <button onClick={() => handleToggle(true)} id="al" area-label="mobileMenuClose"><GiHamburgerMenu style={{ fontSize: "30px" }} /></button>
             }
           </div>
           {handleActive &&

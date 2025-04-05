@@ -17,11 +17,11 @@ const Hero = () => {
         <p className='font-semibold text-4xl lg:text-[80px]'>Professional Software Engineer</p>
         <p className='font-normal text-xl'>Focused on delivering impactful and scalable digital solutions.</p>
         <div className='flex gap-5'>
-          <button className='font-normal text-2xl px-6 py-1.5 border rounded-lg border-[#4f53ff]'>
-            <a href="#contact">Hire Me</a>
+          <button className='font-normal px-6 py-1.5 border rounded-lg border-[#4f53ff]'>
+            <a href="#contact" className='text-2xl'>Hire Me</a>
           </button>
-          <button className='font-normal text-2xl px-3 py-1.5 border rounded-lg bg-[#4f53ff] border-transparent text-white'>
-            <a href="#">Download CV</a>
+          <button className='font-normal px-3 py-1.5 border rounded-lg bg-[#4f53ff] border-transparent text-white'>
+            <a href="#" className='text-2xl'>Download CV</a>
           </button>
         </div>
       </div>
