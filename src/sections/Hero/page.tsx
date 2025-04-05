@@ -16,13 +16,13 @@ const Hero = () => {
       <div className='flex flex-col gap-10 lg:w-7/12'>
         <p className='font-semibold text-4xl lg:text-[80px]'>Professional Software Engineer</p>
         <p className='font-normal text-xl'>Focused on delivering impactful and scalable digital solutions.</p>
-        <div className='flex gap-5'>
-          <button className='font-normal px-6 py-1.5 border rounded-lg border-[#4f53ff]'>
-            <a href="#contact" className='text-2xl'>Hire Me</a>
-          </button>
-          <button className='font-normal px-3 py-1.5 border rounded-lg bg-[#4f53ff] border-transparent text-white'>
-            <a href="#" className='text-2xl'>Download CV</a>
-          </button>
+        <div className='flex gap-5 space-y-4'>
+          <a href="#contact" className='font-normal px-6 py-3 border rounded-lg border-[#4f53ff] text-xl'>Hire Me</a>
+          <a href="#contact" className="text-xl block">
+            <button className="font-normal px-6 py-3 border rounded-lg bg-[#4f53ff] border-transparent text-white">
+              Download CV
+            </button>
+          </a>
         </div>
       </div>
       <div className="flex justify-center items-center">

@@ -19,23 +19,21 @@ const Header = () => {
         <div id="desktop-nav" className='hidden lg:flex justify-between items-center'>
           <span className='font-semibold text-3xl'>Yusuf Hasan</span>
           <ul className='flex items-center gap-10'>
-            <li className='font-normal text-2xl hover:font-medium'><a href="#skills">Skills</a></li>
-            <li className='font-normal text-2xl hover:font-medium'><a href="#services">Services</a></li>
-            <li className='font-normal text-2xl hover:font-medium'><a href="#projects">Projects</a></li>
-            <li className='font-normal text-2xl hover:font-medium'><a href="#career">Career</a></li>
-            <li className='font-normal text-2xl hover:font-medium'><a href="#contact">Contact</a></li>
+            <li className='font-normal text-xl hover:font-medium'><a href="#skills">Skills</a></li>
+            <li className='font-normal text-xl hover:font-medium'><a href="#services">Services</a></li>
+            <li className='font-normal text-xl hover:font-medium'><a href="#projects">Projects</a></li>
+            <li className='font-normal text-xl hover:font-medium'><a href="#career">Career</a></li>
+            <li className='font-normal text-xl hover:font-medium'><a href="#contact">Contact</a></li>
           </ul>
-          <button className='font-normal text-2xl px-6 py-1.5 border rounded-lg border-[#4f53ff]'>
-            <a href="#contact">Hire Me</a>
-          </button>
+          <a href="#contact" className='font-normal px-6 py-3 border rounded-lg border-[#4f53ff] text-xl'>Hire Me</a>
         </div>
         <div id="mobile-nav" className='lg:hidden flex flex-col justify-between'>
           <div className='flex items-center justify-between'>
             <span className='font-semibold text-xl text-center'>Yusuf Hasan</span>
             {handleActive ?
-              <button onClick={() => handleToggle(false)} id="al" area-label="mobileMenuOpen"><AiOutlineCloseCircle style={{ fontSize: "30px" }} /></button>
+              <button onClick={() => handleToggle(false)} id="al" aria-label="mobileMenuOpen"><AiOutlineCloseCircle style={{ fontSize: "30px" }} /></button>
               :
-              <button onClick={() => handleToggle(true)} id="al" area-label="mobileMenuClose"><GiHamburgerMenu style={{ fontSize: "30px" }} /></button>
+              <button onClick={() => handleToggle(true)} id="al" aria-label="mobileMenuClose"><GiHamburgerMenu style={{ fontSize: "30px" }} /></button>
             }
           </div>
           {handleActive &&
@@ -46,13 +44,13 @@ const Header = () => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className='mt-10'>
               <ul className='flex flex-col items-start gap-10'>
-                <li className='font-normal text-2xl hover:font-medium flex items-center gap-2'><a href="#skills">Skills</a><FaArrowRight /></li>
-                <li className='font-normal text-2xl hover:font-medium flex items-center gap-2'><a href="#services">Services</a><FaArrowRight /></li>
-                <li className='font-normal text-2xl hover:font-medium flex items-center gap-2'><a href="#projects">Projects</a><FaArrowRight /></li>
-                <li className='font-normal text-2xl hover:font-medium flex items-center gap-2'><a href="#career">Career</a><FaArrowRight /></li>
-                <li className='font-normal text-2xl hover:font-medium flex items-center gap-2'><a href="#contact">Contact</a><FaArrowRight /></li>
+                <li className='font-normal text-xl hover:font-medium flex items-center gap-2'><a href="#skills">Skills</a><FaArrowRight /></li>
+                <li className='font-normal text-xl hover:font-medium flex items-center gap-2'><a href="#services">Services</a><FaArrowRight /></li>
+                <li className='font-normal text-xl hover:font-medium flex items-center gap-2'><a href="#projects">Projects</a><FaArrowRight /></li>
+                <li className='font-normal text-xl hover:font-medium flex items-center gap-2'><a href="#career">Career</a><FaArrowRight /></li>
+                <li className='font-normal text-xl hover:font-medium flex items-center gap-2'><a href="#contact">Contact</a><FaArrowRight /></li>
               </ul>
-              <button className='mt-10 font-normal text-2xl px-6 py-2 border rounded-lg border-[#4f53ff] w-full'>
+              <button className='mt-10 font-normal text-xl px-6 py-2 border rounded-lg border-[#4f53ff] w-full'>
                 <a href="#contact">Hire Me</a>
               </button>
             </motion.div>)}
