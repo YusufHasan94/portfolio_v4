@@ -208,7 +208,7 @@ const Projects = () => {
                                 className="border border-[#4f53ff] rounded-lg px-6 pb-14 pt-4 lg:w-[30%] flex flex-col gap-2 relative"
                                 transition={{ duration: 0.5}}
                             >
-                                <h4 className="text-xl font-semibold">{project.name}</h4>
+                                <span className="text-xl font-semibold">{project.name}</span>
                                 <p>{project.description}</p>
                                 {/* <a href={`${project.preview_url}`}>view website</a> */}
                                 <div className="flex flex-wrap gap-3">
