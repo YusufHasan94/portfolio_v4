@@ -9,7 +9,7 @@ const Contact = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className='py-10 lg:py-20 flex flex-col lg:flex-row gap-10 lg:gap-0 items-center justify-between'
+      className='py-10 lg:py-20 flex flex-col lg:flex-row gap-10 lg:gap-0 items-center justify-between scroll-mt-20'
       id="contact"
     >
       <div className='flex flex-col gap-10 lg:w-1/2'>

@@ -36,7 +36,7 @@ const Career = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: true }}
-            className="py-10 lg:py-20"
+            className="py-10 lg:py-20 scroll-mt-20"
             id="career"
         >
             <h1 className="text-3xl lg:text-4xl font-semibold text-center">Career Highlights</h1>

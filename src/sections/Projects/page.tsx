@@ -182,7 +182,7 @@ const Projects = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: true }}
-            className="py-10 lg:py-20"
+            className="py-10 lg:py-20 scroll-mt-20"
             id="projects"
         >
             <h1 className="text-3xl lg:text-4xl font-semibold text-center">Showcasing Reliable & Innovative Work</h1>
