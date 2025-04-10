@@ -48,11 +48,11 @@ const Services = () => {
             className="py-10 lg:py-20"
             id="services"
         >
-            <h1 className="text-3xl lg:text-4xl font-semibold text-start">Crafting Digital Solutions</h1>
+            <h1 className="text-3xl lg:text-4xl font-semibold text-center">Crafting Digital Solutions</h1>
             <div className="flex flex-col lg:flex-row py-10 lg:py-20 gap-10">
                 {
                     solutions.map((service, index) => (
-                        <div key={index} className="lg:w-1/3 bg-gray-100/90 border-b-4 border-[#4f53ff] rounded-lg px-7 py-4 flex flex-col gap-3">
+                        <div key={index} className="lg:w-1/3 bg-gray-100/90 border-b-4 border-[#6f74ff] rounded-lg px-7 py-4 flex flex-col gap-3">
                             <Image src={service?.image} alt="" className="w-40 rounded-lg" />
                             <span className="text-2xl font-semibold">{service.title}</span>
                             <p className="text-base font-normal">{service.description}</p>

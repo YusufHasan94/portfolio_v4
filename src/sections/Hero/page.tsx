@@ -19,7 +19,7 @@ const Hero = () => {
         <div className='flex gap-5 space-y-4'>
           <a href="#contact" className='font-normal px-6 py-3 border rounded-lg border-[#4f53ff] text-xl'>Hire Me</a>
           <a href="#contact" className="block">
-            <div className="font-normal text-center px-6 py-3 border rounded-lg bg-[#4f53ff] border-transparent text-white text-xl">
+            <div className="font-normal text-center px-6 py-3 rounded-lg bg-[#6f74ff] text-white text-xl">
               Download CV
             </div>
           </a>

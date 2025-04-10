@@ -185,7 +185,7 @@ const Projects = () => {
             className="py-10 lg:py-20"
             id="projects"
         >
-            <h1 className="text-3xl lg:text-4xl font-semibold text-start">Showcasing Reliable & Innovative Work</h1>
+            <h1 className="text-3xl lg:text-4xl font-semibold text-center">Showcasing Reliable & Innovative Work</h1>
             <div className="flex justify-center py-10 lg:py-20 flex-wrap gap-10">
                 <div className="flex flex-wrap gap-10 justify-center lg:justify-normal">
                     {projctsType.map((type, index) => (
@@ -213,7 +213,7 @@ const Projects = () => {
                                 {/* <a href={`${project.preview_url}`}>view website</a> */}
                                 <div className="flex flex-wrap gap-3">
                                     {project.tech_stack.map((stack, index) => (
-                                        <span key={index} className="px-2 py-1 bg-[#4f53ff] text-white rounded-lg">
+                                        <span key={index} className="px-2 py-1 bg-[#6f74ff] text-white rounded-lg">
                                             {stack}
                                         </span>
                                     ))}
