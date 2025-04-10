@@ -205,7 +205,7 @@ const Projects = () => {
                             <motion.div
                                 layout
                                 key={project.id}
-                                className="border border-[#4f53ff] rounded-lg px-6 pb-14 pt-4 lg:w-[30%] flex flex-col gap-2 relative"
+                                className="border border-[#4f53ff] bg-[#FFF] rounded-lg px-6 pb-14 pt-4 lg:w-[30%] flex flex-col gap-2 relative"
                                 transition={{ duration: 0.5}}
                             >
                                 <span className="text-xl font-semibold">{project.name}</span>
