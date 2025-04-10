@@ -17,7 +17,6 @@ import elementor from "@/assets/icons/elementor.svg"
 import docker from "@/assets/icons/docker.svg"
 import aws from "@/assets/icons/aws.svg"
 import Image, { StaticImageData } from "next/image";
-import { div } from "framer-motion/client";
 
 
 const techSkills = [
