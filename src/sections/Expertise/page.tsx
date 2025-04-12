@@ -37,23 +37,23 @@ const techSkills = [
     image: typescript
   },
   {
-    name: "Tailwind CSS",
+    name: "Tailwind",
     image: tailwindcss
   },
   {
-    name: "React JS",
+    name: "React",
     image: reactjs
   },
   {
-    name: "Next JS",
+    name: "Next",
     image: nextjs
   },
   {
-    name: "Node JS",
+    name: "Node",
     image: nodejs
   },
   {
-    name: "Express JS",
+    name: "Express",
     image: expressjs
   },
   {
@@ -105,11 +105,11 @@ const Expertise = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="w-40 flex flex-col items-center border border-[#4F53FF] px-4 pt-3 pb-1 rounded-xl 
+            className="w-40 flex flex-col items-center border border-[#4F53FF] px-4 pt-3 pb-1 rounded-xl
              bg-gradient-to-tr from-[#4F53FF] via-[#6f74ff] to-white 
              shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
             <Image src={skill?.image} alt={skill.name} className="w-14" />
-            <span className="text-sm px-4 py-2 text-[#fff] uppercase">
+            <span className="text-sm font-medium px-4 py-2 text-[#fff] uppercase">
               {skill.name}
             </span>
           </div>
