@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { motion } from "framer-motion";
 import Image from 'next/image';
 import union from "@/assets/union.svg"
+import Link from 'next/link';
 
 
 const menuItems = ["skills", "services", "projects", "career", "contact"]
@@ -24,9 +25,9 @@ const Header = () => {
         <div id="desktop-nav" className='hidden lg:flex justify-between items-center bg-[#2c3036]/70 pt-8 pb-2 px-2 z-40'>
           <div className='flex gap-2 justify-center'>
             <Image src={union} alt="union" />
-            <a href="/" className='font-semibold text-xl'>
+            <Link href="/" className='font-semibold text-xl'>
               Yusuf Hasan
-            </a>
+            </Link>
           </div>
           <ul className='flex items-center gap-10'>
             {
