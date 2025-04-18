@@ -108,15 +108,15 @@ const Expertise = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className="mt-10 lg:t-20 scroll-mt-20"
+      className="mt-10 lg:mt-[112px] scroll-mt-20"
       id="skills"
     >
       <div className="flex gap-4 items-center">
-        <h1 className="text-3xl lg:text-4xl font-semibold text-start">Professional Skills & Technical Proficiency</h1>
+        <h1 className="text-[32px] lg:text-4xl font-semibold text-start">Professional Skills & Technical Proficiency</h1>
         <div className="w-[152px] h-[2px] bg-[#C778DD]"></div>
       </div>
       <div className="flex justify-center py-10 lg:pt-12 lg:pb-[106px] flex-wrap gap-10">
-        <Marquee>
+        <Marquee pauseOnClick={true}>
           {skills1.map((skill, index) => (
             <div
               key={index}
@@ -129,7 +129,7 @@ const Expertise = () => {
           ))}
         </Marquee>
 
-        <Marquee direction="right">
+        <Marquee direction="right" pauseOnClick={true}>
           {skills2.map((skill, index) => (
             <div
               key={index}
