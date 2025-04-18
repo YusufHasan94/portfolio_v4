@@ -7,7 +7,7 @@ import Services from "@/sections/Services/page";
 
 export default function Home() {
   return (
-    <div className="max-w-[1240px] px-5 mx-auto">
+    <div className="max-w-[1240px] mx-auto bg-[#2c3036] px-2">
       <Hero/>
       <Expertise/>
       <Services/>
