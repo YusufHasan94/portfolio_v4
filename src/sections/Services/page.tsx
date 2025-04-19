@@ -1,7 +1,6 @@
 'use client'
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
-import { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import frontend from "@/assets/services/frontend.webp"
 import fullstack from "@/assets/services/fullstack.webp"
@@ -33,11 +32,6 @@ interface props {
 
 
 const Services = () => {
-    const [solutions, setsolutions] = useState<props[]>([]);
-
-    useEffect(() => {
-        setsolutions(allServices);
-    }, [])
 
     return (
         <motion.div
@@ -54,7 +48,7 @@ const Services = () => {
             </div>
             <div className="flex flex-col lg:flex-row pt-10 lg:pt-12 gap-10">
                 {
-                    solutions.map((service, index) => (
+                    allServices.map((service, index) => (
                         <div key={index} className="lg:w-1/3  border border-[#ABB2BF] rounded-lg px-7 py-4 flex flex-col gap-3">
                             <Image src={service?.image} alt="" className="w-40 rounded-lg" />
                             <span className="text-2xl font-semibold">{service.title}</span>

@@ -32,7 +32,7 @@ const Header = () => {
           <ul className='flex items-center gap-10'>
             {
               menuItems.map((item, index) => (
-                <li key={index} id={item} className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#C778DD] before:transition-all before:duration-300 hover:before:w-full capitalize'><a href="#skills">{item}</a></li>
+                <li key={index} className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#C778DD] before:transition-all before:duration-300 hover:before:w-full capitalize'><a href={`#${item}`}>{item}</a></li>
               ))
             }
           </ul>

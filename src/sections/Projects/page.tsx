@@ -182,11 +182,14 @@ const Projects = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: true }}
-            className="py-10 lg:py-20 scroll-mt-20"
+            className="pb-10 lg:pb-[106px] scroll-mt-20"
             id="projects"
         >
-            <h1 className="text-3xl lg:text-4xl font-semibold text-center">Showcasing Reliable & Innovative Work</h1>
-            <div className="flex justify-center py-10 lg:py-20 flex-wrap gap-10">
+            <div className="flex gap-4 items-center">
+                <h1 className="text-[32px] lg:text-4xl font-semibold text-start">Showcasing Reliable & Innovative Work</h1>
+                <div className="w-[152px] h-[2px] bg-[#C778DD]"></div>
+            </div>
+            <div className="flex justify-center pt-10 lg:pt-12 flex-wrap gap-10">
                 <div className="flex flex-wrap gap-10 justify-center lg:justify-normal">
                     {projctsType.map((type, index) => (
                         <button
@@ -205,8 +208,8 @@ const Projects = () => {
                             <motion.div
                                 layout
                                 key={project.id}
-                                className="border border-[#4f53ff] bg-[#FFF] rounded-lg px-6 pb-14 pt-4 lg:w-[30%] flex flex-col gap-2 relative"
-                                transition={{ duration: 0.5}}
+                                className="border border-[#ABB2BF] bg-[#2c3036] rounded-lg px-6 pb-14 pt-4 lg:w-[30%] flex flex-col gap-2 relative"
+                                transition={{ duration: 0.5 }}
                             >
                                 <span className="text-xl font-semibold">{project.name}</span>
                                 <p>{project.description}</p>

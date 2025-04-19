@@ -1,7 +1,6 @@
 'use client'
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
-import { useEffect, useState } from "react";
 import html from "@/assets/icons/html.svg"
 import css from "@/assets/icons/css.svg"
 import js from "@/assets/icons/javascript.svg"
@@ -16,14 +15,9 @@ import wordpress from "@/assets/icons/wordpress.svg"
 import elementor from "@/assets/icons/elementor.svg"
 import docker from "@/assets/icons/docker.svg"
 import aws from "@/assets/icons/aws.svg"
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
-
-interface props {
-  name: string,
-  image: StaticImageData
-}
 
 const techSkills1 = [
   {
@@ -90,17 +84,7 @@ const techSkills2 = [
 
 
 const Expertise = () => {
-  const [skills1, setSkills1] = useState<props[]>([]);
-  const [skills2, setSkills2] = useState<props[]>([]);
 
-  useEffect(() => {
-    setSkills1(techSkills1);
-  }, [])
-
-
-  useEffect(() => {
-    setSkills2(techSkills2);
-  }, [])
 
   return (
     <motion.div
@@ -115,9 +99,9 @@ const Expertise = () => {
         <h1 className="text-[32px] lg:text-4xl font-semibold text-start">Professional Skills & Technical Proficiency</h1>
         <div className="w-[152px] h-[2px] bg-[#C778DD]"></div>
       </div>
-      <div className="flex justify-center py-10 lg:pt-12 lg:pb-[106px] flex-wrap gap-10">
+      <div className="flex justify-center pt-10 lg:pt-12 lg:pb-[106px] flex-wrap gap-10">
         <Marquee pauseOnClick={true}>
-          {skills1.map((skill, index) => (
+          {techSkills1.map((skill, index) => (
             <div
               key={index}
               className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w-[180px] mx-5">
@@ -130,7 +114,7 @@ const Expertise = () => {
         </Marquee>
 
         <Marquee direction="right" pauseOnClick={true}>
-          {skills2.map((skill, index) => (
+          {techSkills2.map((skill, index) => (
             <div
               key={index}
               className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w-[180px] mx-5">
