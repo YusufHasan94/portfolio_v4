@@ -24,13 +24,6 @@ const allServices = [
     }
 ]
 
-interface props {
-    title: string,
-    description: string,
-    image: StaticImageData
-}
-
-
 const Services = () => {
 
     return (
