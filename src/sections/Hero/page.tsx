@@ -13,7 +13,7 @@ const Hero = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className='lg:pt-[123px] flex flex-col lg:flex-row items-center justify-between gap-20 lg:gap-0 '
+      className='pt-20 lg:pt-[123px] flex flex-col lg:flex-row items-center justify-between gap-20 lg:gap-0 '
     >
       <div className='flex flex-col gap-10 lg:w-1/2'>
         <h1 className='font-semibold text-4xl lg:text-[32px]'>Software Engineer<br/>with DevOps Expertise</h1>

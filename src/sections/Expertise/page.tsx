@@ -92,20 +92,20 @@ const Expertise = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className="mt-10 lg:mt-[112px] scroll-mt-20"
+      className="mt-10 lg:mt-[112px] pb-10 lg:pb-0 scroll-mt-20"
       id="skills"
     >
       <div className="flex gap-4 items-center">
-        <h1 className="text-[32px] lg:text-4xl font-semibold text-start">Professional Skills & Technical Proficiency</h1>
-        <div className="w-[152px] h-[2px] bg-[#C778DD]"></div>
+        <h1 className="text-[24px] lg:text-[32px] font-semibold text-start">Professional Skills & Technical Proficiency</h1>
+        <div className="w-[50px] lg:w-[152px] h-[2px] bg-[#C778DD]"></div>
       </div>
       <div className="flex justify-center pt-10 lg:pt-12 lg:pb-[106px] flex-wrap gap-10">
         <Marquee pauseOnClick={true}>
           {techSkills1.map((skill, index) => (
             <div
               key={index}
-              className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w-[180px] mx-5">
-              <Image src={skill?.image} alt={skill.name} className="w-6 lg:w-12" />
+              className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
+              <Image src={skill?.image} alt={skill.name} className="w-8 lg:w-12" />
               <span className="text-base font-medium text-[#fff] capitalize">
                 {skill.name}
               </span>
@@ -117,8 +117,8 @@ const Expertise = () => {
           {techSkills2.map((skill, index) => (
             <div
               key={index}
-              className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w-[180px] mx-5">
-              <Image src={skill?.image} alt={skill.name} className="w-6 lg:w-12" />
+              className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
+              <Image src={skill?.image} alt={skill.name} className="w-8 lg:w-12" />
               <span className="text-base font-medium text-[#fff] capitalize">
                 {skill.name}
               </span>

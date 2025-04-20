@@ -25,7 +25,7 @@ const Accordion = ({ milestone }: AccordionProps) => {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center p-4 font-semibold text-left cursor-pointer"
       >
-        <div className="w-full flex justify-between items-center pr-5">
+        <div className="w-full flex flex-col lg:flex-row justify-between lg:items-center pr-5">
             <div className="flex flex-col">
                 <Link href={milestone.company_url} className="text-lg" target="_blank">{milestone.company}</Link>
                 <span className="text-2xl">{milestone.title}</span>

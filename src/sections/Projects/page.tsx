@@ -17,8 +17,8 @@ const Projects = () => {
             id="projects"
         >
             <div className="flex gap-4 items-center">
-                <h1 className="text-[32px] lg:text-4xl font-semibold text-start">Showcasing Reliable & Innovative Work</h1>
-                <div className="w-[152px] h-[2px] bg-[#C778DD]"></div>
+                <h1 className="text-[24px] lg:text-[32px] font-semibold text-start">Showcasing Reliable & Innovative Work</h1>
+                <div className="w-[50px] lg:w-[152px] h-[2px] bg-[#C778DD]"></div>
             </div>
             <RecentProjects/>
 

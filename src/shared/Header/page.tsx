@@ -37,7 +37,7 @@ const Header = () => {
             }
           </ul>
         </div>
-        <div id="mobile-nav" className='lg:hidden flex flex-col justify-between'>
+        <div id="mobile-nav" className='lg:hidden flex flex-col justify-between px-4 pt-4 pb-2 bg-[#2c3036]'>
           <div className='flex items-center justify-between'>
             <span className='font-semibold text-xl text-center'>Yusuf Hasan</span>
             {handleActive ?
@@ -52,15 +52,15 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className='mt-10'>
+              className='mt-10 bg-[#2c3036]'>
               <ul className='flex flex-col items-start gap-7'>
-                <li className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#4f53ff] before:transition-all before:duration-300 hover:before:w-full'><a href="#skills">Skills</a></li>
-                <li className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#4f53ff] before:transition-all before:duration-300 hover:before:w-full'><a href="#services">Services</a></li>
-                <li className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#4f53ff] before:transition-all before:duration-300 hover:before:w-full'><a href="#projects">Projects</a></li>
-                <li className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#4f53ff] before:transition-all before:duration-300 hover:before:w-full'><a href="#career">Career</a></li>
-                <li className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#4f53ff] before:transition-all before:duration-300 hover:before:w-full'><a href="#contact">Contact</a></li>
+                {
+                  menuItems.map((item, index) => (
+                    <li key={index} className='font-normal text-xl relative inline-block pb-1 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-[#C778DD] before:transition-all before:duration-300 hover:before:w-full capitalize'><a href={`#${item}`}>{item}</a></li>
+                  ))
+                }
               </ul>
-              <button className='mt-10 font-normal text-xl px-6 py-2 border rounded-lg border-[#4f53ff] w-full'>
+              <button className='mt-10 font-normal text-xl px-6 py-2 border rounded-lg border-[#C778DD] w-full'>
                 <a href="#contact">Hire Me</a>
               </button>
             </motion.div>)}

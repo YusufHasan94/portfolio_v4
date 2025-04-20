@@ -97,8 +97,8 @@ const RecentProjects = () => {
         <div className="cards flex flex-col gap-10">
           {allProjects.map((project, index) => (
             <div key={index} className="card-wrapper flex flex-col items-center">
-              <div className="card w-3/4 h-[350px] flex gap-2 items-center border rounded-xl shadow-xl bg-[#2C3036] overflow-hidden">
-                <div className="w-1/2 h-full p-4 flex flex-col justify-around">
+              <div className="card w-full lg:w-3/4 lg:h-[350px] flex flex-col-reverse lg:flex-row gap-2 items-center border rounded-xl shadow-xl bg-[#2C3036] overflow-hidden">
+                <div className="w-full lg:w-1/2 h-full p-4 flex gap-3 flex-col justify-around">
                   <div className="flex gap-2 items-start">
                     <span className="text-2xl font-semibold">{project.name}</span>
                     <Link href={project.preview_url} target="_blank">
@@ -117,7 +117,7 @@ const RecentProjects = () => {
                     ))}
                   </div>
                 </div>
-                <div className="w-1/2 h-fit flex justify-center pr-4">
+                <div className="w-full lg:w-1/2 h-fit flex justify-center lg:pr-4">
                   <Image
                     src={project.image}
                     alt={project.name}
