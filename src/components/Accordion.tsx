@@ -2,10 +2,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import Link from "next/link";
 
 interface AccordionProps {
     milestone: {
         company: string,
+        company_url: string,
         title: string,
         description: string,
         starting: string,
@@ -25,7 +27,7 @@ const Accordion = ({ milestone }: AccordionProps) => {
       >
         <div className="w-full flex justify-between items-center pr-5">
             <div className="flex flex-col">
-                <span className="text-lg">{milestone.company}</span>
+                <Link href={milestone.company_url} className="text-lg" target="_blank">{milestone.company}</Link>
                 <span className="text-2xl">{milestone.title}</span>
             </div>
             <p className="capitalize">{milestone.starting} - {milestone.ending}</p>

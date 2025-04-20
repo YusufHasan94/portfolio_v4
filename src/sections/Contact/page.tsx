@@ -33,7 +33,7 @@ const Contact = () => {
                 <label htmlFor="" className="uppercase ">message</label>
                 <textarea name="" id="" className='border border-[#ABB2BF] p-2 rounded-lg min-h-28'  placeholder="Message" required></textarea>
             </div>
-            <input type="submit" value="Send" className="border border-[#C778DD] py-2 text-white text-lg uppercase font-medium rounded-lg" />
+            <input type="submit" value="Send" className="border border-[#C778DD] py-2 text-white text-lg uppercase font-medium rounded-lg cursor-pointer" />
         </form>
       </div>
     </motion.div>

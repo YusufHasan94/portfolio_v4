@@ -9,6 +9,7 @@ import Image from "next/image";
 const allMilestones = [
     {
         company: "Vivasoft Limited",
+        company_url: "https://vivasoftltd.com/",
         title: "Software Engineer L-1",
         description: "I specialize in developing high-performance WordPress websites with optimization, handling DevOps tasks for streamlined deployment, and building dynamic frontend interfaces using React UI library for seamless user experiences.",
         starting: "March, 2024",
