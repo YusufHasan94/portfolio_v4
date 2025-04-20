@@ -1,7 +1,6 @@
 'use client'
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
-import { useEffect, useState } from "react";
 import html from "@/assets/icons/html.svg"
 import css from "@/assets/icons/css.svg"
 import js from "@/assets/icons/javascript.svg"
@@ -16,10 +15,11 @@ import wordpress from "@/assets/icons/wordpress.svg"
 import elementor from "@/assets/icons/elementor.svg"
 import docker from "@/assets/icons/docker.svg"
 import aws from "@/assets/icons/aws.svg"
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import Marquee from "react-fast-marquee";
 
 
-const techSkills = [
+const techSkills1 = [
   {
     name: "HTML",
     image: html
@@ -41,6 +41,18 @@ const techSkills = [
     image: tailwindcss
   },
   {
+    name: "Wordpress",
+    image: wordpress
+  },
+  {
+    name: "Elementor",
+    image: elementor
+  }
+]
+
+const techSkills2 = [
+
+  {
     name: "React",
     image: reactjs
   },
@@ -61,14 +73,6 @@ const techSkills = [
     image: mongodb
   },
   {
-    name: "Wordpress",
-    image: wordpress
-  },
-  {
-    name: "Elementor",
-    image: elementor
-  },
-  {
     name: "Docker",
     image: docker
   },
@@ -78,18 +82,9 @@ const techSkills = [
   }
 ]
 
-interface props {
-  name: string,
-  image: StaticImageData
-}
-
 
 const Expertise = () => {
-  const [skills, setSkills] = useState<props[]>([]);
 
-  useEffect(() => {
-    setSkills(techSkills);
-  }, [])
 
   return (
     <motion.div
@@ -97,23 +92,39 @@ const Expertise = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className="py-10 lg:py-20 scroll-mt-20"
+      className="mt-10 lg:mt-[112px] pb-10 lg:pb-0 scroll-mt-20"
       id="skills"
     >
-      <h1 className="text-3xl lg:text-4xl font-semibold text-center">Professional Skills & Technical Proficiency</h1>
-      <div className="flex justify-center py-10 lg:py-20 flex-wrap gap-10">
-        {skills.map((skill, index) => (
-          <div
-            key={index}
-            className="w-40 flex flex-col items-center border border-[#4F53FF] px-4 pt-3 pb-1 rounded-xl
-             bg-gradient-to-tr from-[#4F53FF] via-[#6f74ff] to-white 
-             shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
-            <Image src={skill?.image} alt={skill.name} className="w-14" />
-            <span className="text-sm font-medium px-4 py-2 text-[#fff] uppercase">
-              {skill.name}
-            </span>
-          </div>
-        ))}
+      <div className="flex gap-4 items-center">
+        <h1 className="text-[24px] lg:text-[32px] font-semibold text-start">Professional Skills & Technical Proficiency</h1>
+        <div className="w-[50px] lg:w-[152px] h-[2px] bg-[#C778DD]"></div>
+      </div>
+      <div className="flex justify-center pt-10 lg:pt-12 lg:pb-[106px] flex-wrap gap-10">
+        <Marquee pauseOnClick={true}>
+          {techSkills1.map((skill, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
+              <Image src={skill?.image} alt={skill.name} className="w-8 lg:w-12" />
+              <span className="text-base font-medium text-[#fff] capitalize">
+                {skill.name}
+              </span>
+            </div>
+          ))}
+        </Marquee>
+
+        <Marquee direction="right" pauseOnClick={true}>
+          {techSkills2.map((skill, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
+              <Image src={skill?.image} alt={skill.name} className="w-8 lg:w-12" />
+              <span className="text-base font-medium text-[#fff] capitalize">
+                {skill.name}
+              </span>
+            </div>
+          ))}
+        </Marquee>
       </div>
     </motion.div>
   )
