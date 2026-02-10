@@ -11,12 +11,6 @@ pipeline {
 
   stages {
 
-    stage('Checkout Code') {
-      steps {
-        git branch: 'main', url: 'https://github.com/YusufHasan94/portfolio_v4.git'
-      }
-    }
-
     stage('Build Docker Image') {
       steps {
         sh """
