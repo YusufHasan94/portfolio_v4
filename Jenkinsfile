@@ -43,20 +43,17 @@ pipeline {
       steps {
         sshagent(['ec2-ssh']) {
           sh """
-            ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} '
-              aws ecr get-login-password --region ${AWS_REGION} \
-              | docker login --username AWS --password-stdin ${ECR_REPO}
-
-              docker pull ${ECR_REPO}:${IMAGE_TAG}
-
-              docker stop ${CONTAINER_NAME} || true
-              docker rm ${CONTAINER_NAME} || true
-
-              docker run -d \
-                --name ${CONTAINER_NAME} \
-                -p 80:3000 \
-                ${ECR_REPO}:${IMAGE_TAG}
-            '
+            ssh -o StrictHostKeyChecking=no ubuntu@EC2_PUBLIC_IP << 'EOF'
+              aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com
+    
+              docker pull 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
+    
+              docker stop automation || true
+              docker rm automation || true
+    
+              docker run -d --name automation -p 3020:3000 \
+                744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
+            EOF
           """
         }
       }
