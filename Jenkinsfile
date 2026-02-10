@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     AWS_REGION = "ap-southeast-1"
-    ECR_REPO   = "744090694119.dkr.ecr.ap-south-1.amazonaws.com/automation"
+    ECR_REPO   = "744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation"
     IMAGE_TAG  = "${BUILD_NUMBER}"
     EC2_HOST   = "18.143.199.74"
     CONTAINER_NAME = "automation-app"
