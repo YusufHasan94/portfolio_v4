@@ -43,17 +43,14 @@ pipeline {
       steps {
         sshagent(['ec2-ssh']) {
           sh """
-            ssh -o StrictHostKeyChecking=no ubuntu@18.143.199.74 << 'DEPLOY_EOF'
-              aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com
-    
-              sudo docker pull 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
-    
-              echo "Stopping existing container (if any)..."
-              sudo docker stop automation || true
-              sudo docker rm automation || true
-    
-              docker run -d --name automation -p 3020:3000 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
-            DEPLOY_EOF
+          ssh -o StrictHostKeyChecking=no ubuntu@18.143.199.74 "\
+          aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com && \
+          #docker pull 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:22 && \
+          #docker stop automation || true && \
+          #docker rm automation || true && \
+          #docker run -d --name automation -p 3000:3000 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:22 \
+          cd automation && docker compose up -d --build
+          "
           """
         }
       }
