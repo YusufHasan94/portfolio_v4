@@ -46,10 +46,11 @@ pipeline {
             ssh -o StrictHostKeyChecking=no ubuntu@18.143.199.74 << 'EOF'
               aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com
     
-              docker pull 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
+              sudo docker pull 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
     
-              docker stop automation || true
-              docker rm automation || true
+              echo "Stopping existing container (if any)..."
+              sudo docker stop automation || true
+              sudo docker rm automation || true
     
               docker run -d --name automation -p 3020:3000 \
                 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
