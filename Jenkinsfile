@@ -52,8 +52,7 @@ pipeline {
               sudo docker stop automation || true
               sudo docker rm automation || true
     
-              docker run -d --name automation -p 3020:3000 \
-                744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
+              docker run -d --name automation -p 3020:3000 744090694119.dkr.ecr.ap-southeast-1.amazonaws.com/automation:${BUILD_NUMBER}
             DEPLOY_EOF
           """
         }
