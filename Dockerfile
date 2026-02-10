@@ -33,9 +33,7 @@ COPY package*.json ./
 RUN npm install --production
 
 # 5. Copy build output from builder
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder /app ./
 
 # 6. Expose Next.js port
 EXPOSE 3000
