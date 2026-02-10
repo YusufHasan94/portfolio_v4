@@ -33,7 +33,7 @@ pipeline {
     stage('Tag & Push Image to ECR') {
       steps {
         sh """
-          docker tag my-app:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG}
+          docker tag automation-app:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG}
           docker push ${ECR_REPO}:${IMAGE_TAG}
         """
       }
