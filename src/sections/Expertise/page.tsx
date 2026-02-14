@@ -1,90 +1,37 @@
 'use client'
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
-import html from "@/assets/icons/html.svg"
-import css from "@/assets/icons/css.svg"
-import js from "@/assets/icons/javascript.svg"
-import typescript from "@/assets/icons/typescript.svg"
-import tailwindcss from "@/assets/icons/tailwind-css.svg"
-import reactjs from "@/assets/icons/react.svg"
-import nextjs from "@/assets/icons/nextjs.svg"
-import nodejs from "@/assets/icons/node-js.svg"
-import expressjs from "@/assets/icons/express-js.svg"
-import mongodb from "@/assets/icons/mongodb.svg"
-import wordpress from "@/assets/icons/wordpress.svg"
-import elementor from "@/assets/icons/elementor.svg"
-import docker from "@/assets/icons/docker.svg"
-import aws from "@/assets/icons/aws.svg"
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
-
-
-const techSkills1 = [
-  {
-    name: "HTML",
-    image: html
-  },
-  {
-    name: "CSS",
-    image: css
-  },
-  {
-    name: "JavaScript",
-    image: js
-  },
-  {
-    name: "TypeScript",
-    image: typescript
-  },
-  {
-    name: "Tailwind",
-    image: tailwindcss
-  },
-  {
-    name: "Wordpress",
-    image: wordpress
-  },
-  {
-    name: "Elementor",
-    image: elementor
-  }
-]
-
-const techSkills2 = [
-
-  {
-    name: "React",
-    image: reactjs
-  },
-  {
-    name: "Next",
-    image: nextjs
-  },
-  {
-    name: "Node",
-    image: nodejs
-  },
-  {
-    name: "Express",
-    image: expressjs
-  },
-  {
-    name: "MongoDB",
-    image: mongodb
-  },
-  {
-    name: "Docker",
-    image: docker
-  },
-  {
-    name: "AWS",
-    image: aws
-  }
-]
+import { useEffect, useState } from 'react';
+import { Skill } from '@/types/portfolio';
 
 
 const Expertise = () => {
+  const [techSkills1, setTechSkills1] = useState<Skill[]>([]);
+  const [techSkills2, setTechSkills2] = useState<Skill[]>([]);
 
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const response = await fetch('/api/portfolio/skills');
+        const data = await response.json();
+
+        // Check if response is successful and data is an array
+        if (!response.ok || !Array.isArray(data)) {
+          console.error('Error fetching skills:', data);
+          return;
+        }
+
+        setTechSkills1(data.filter(skill => skill.category === 1));
+        setTechSkills2(data.filter(skill => skill.category === 2));
+      } catch (error) {
+        console.error('Error fetching skills:', error);
+      }
+    };
+
+    fetchSkills();
+  }, []);
 
   return (
     <motion.div
@@ -105,7 +52,7 @@ const Expertise = () => {
             <div
               key={index}
               className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
-              <Image src={skill?.image} alt={skill.name} className="w-8 lg:w-12" />
+              <Image src={skill?.image} alt={skill.name} width={48} height={48} className="w-8 lg:w-12" />
               <span className="text-base font-medium text-[#fff] capitalize">
                 {skill.name}
               </span>
@@ -118,7 +65,7 @@ const Expertise = () => {
             <div
               key={index}
               className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
-              <Image src={skill?.image} alt={skill.name} className="w-8 lg:w-12" />
+              <Image src={skill?.image} alt={skill.name} width={48} height={48} className="w-8 lg:w-12" />
               <span className="text-base font-medium text-[#fff] capitalize">
                 {skill.name}
               </span>

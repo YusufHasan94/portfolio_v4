@@ -1,0 +1,179 @@
+{
+    "hero": {
+        "title": "Software Engineer",
+        "subtitle": "with DevOps Expertise",
+        "description": "Focused on delivering impactful and scalable digital solutions.",
+        "currentStatus": "Currently working on Portfolio"
+    },
+    "skills": [
+        {
+            "id": "skill-1",
+            "name": "HTML",
+            "image": "/assets/icons/html.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-2",
+            "name": "CSS",
+            "image": "/assets/icons/css.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-3",
+            "name": "JavaScript",
+            "image": "/assets/icons/javascript.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-4",
+            "name": "TypeScript",
+            "image": "/assets/icons/typescript.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-5",
+            "name": "Tailwind",
+            "image": "/assets/icons/tailwind-css.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-6",
+            "name": "Wordpress",
+            "image": "/assets/icons/wordpress.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-7",
+            "name": "Elementor",
+            "image": "/assets/icons/elementor.svg",
+            "category": 1
+        },
+        {
+            "id": "skill-8",
+            "name": "React",
+            "image": "/assets/icons/react.svg",
+            "category": 2
+        },
+        {
+            "id": "skill-9",
+            "name": "Next",
+            "image": "/assets/icons/nextjs.svg",
+            "category": 2
+        },
+        {
+            "id": "skill-10",
+            "name": "Node",
+            "image": "/assets/icons/node-js.svg",
+            "category": 2
+        },
+        {
+            "id": "skill-11",
+            "name": "Express",
+            "image": "/assets/icons/express-js.svg",
+            "category": 2
+        },
+        {
+            "id": "skill-12",
+            "name": "MongoDB",
+            "image": "/assets/icons/mongodb.svg",
+            "category": 2
+        },
+        {
+            "id": "skill-13",
+            "name": "Docker",
+            "image": "/assets/icons/docker.svg",
+            "category": 2
+        },
+        {
+            "id": "skill-14",
+            "name": "AWS",
+            "image": "/assets/icons/aws.svg",
+            "category": 2
+        }
+    ],
+    "services": [
+        {
+            "id": "service-1",
+            "title": "Frontend Development",
+            "description": "Building responsive, high-performance, and visually appealing web interfaces",
+            "image": "/assets/services/frontend.webp"
+        },
+        {
+            "id": "service-2",
+            "title": "Full Stack Development",
+            "description": "Creating scalable web applications with modern frontend and backend technologies",
+            "image": "/assets/services/fullstack.webp"
+        },
+        {
+            "id": "service-3",
+            "title": "WordPress Development",
+            "description": "Developing custom WordPress themes, plugins, and optimized websites",
+            "image": "/assets/services/wordpress.webp"
+        }
+    ],
+    "projects": [
+        {
+            "id": "project-1",
+            "name": "Portfolio Website",
+            "image": "/assets/projects/management.png",
+            "description": "A personal portfolio website showcasing my projects and skills.",
+            "tech_stack": [
+                "Next.js",
+                "Tailwind CSS",
+                "Framer Motion"
+            ],
+            "preview_url": "https://myportfolio.com",
+            "type": "frontend"
+        },
+        {
+            "id": "project-2",
+            "name": "Portfolio Website v2",
+            "image": "/assets/projects/management.png",
+            "description": "A personal portfolio website showcasing my projects and skills.",
+            "tech_stack": [
+                "Next.js",
+                "Tailwind CSS",
+                "Framer Motion"
+            ],
+            "preview_url": "https://myportfolio.com",
+            "type": "frontend"
+        },
+        {
+            "id": "project-3",
+            "name": "Portfolio Website v3",
+            "image": "/assets/projects/management.png",
+            "description": "A personal portfolio website showcasing my projects and skills.",
+            "tech_stack": [
+                "Next.js",
+                "Tailwind CSS",
+                "Framer Motion"
+            ],
+            "preview_url": "https://myportfolio.com",
+            "type": "frontend"
+        },
+        {
+            "id": "project-4",
+            "name": "Portfolio Website v4",
+            "image": "/assets/projects/management.png",
+            "description": "A personal portfolio website showcasing my projects and skills.",
+            "tech_stack": [
+                "Next.js",
+                "Tailwind CSS",
+                "Framer Motion"
+            ],
+            "preview_url": "https://myportfolio.com",
+            "type": "frontend"
+        }
+    ],
+    "career": [
+        {
+            "id": "career-1",
+            "company": "Vivasoft Limited",
+            "company_url": "https://vivasoftltd.com/",
+            "title": "Software Engineer L-1",
+            "description": "I specialize in developing high-performance WordPress websites with optimization, handling DevOps tasks for streamlined deployment, and building dynamic frontend interfaces using React UI library for seamless user experiences.",
+            "starting": "March, 2024",
+            "ending": "present"
+        }
+    ]
+}

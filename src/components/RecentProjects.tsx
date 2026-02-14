@@ -1,60 +1,44 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
-
-import management from "@/assets/projects/management.png";
+import { Project } from '@/types/portfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const allProjects = [
-  {
-    id: 1,
-    name: "Portfolio Website",
-    image: management,
-    description: "A personal portfolio website showcasing my projects and skills.",
-    tech_stack: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    preview_url: "https://myportfolio.com",
-    type: "frontend"
-  },
-  {
-    id: 2,
-    name: "Portfolio Website v2",
-    image: management,
-    description: "A personal portfolio website showcasing my projects and skills.",
-    tech_stack: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    preview_url: "https://myportfolio.com",
-    type: "frontend"
-  },
-  {
-    id: 3,
-    name: "Portfolio Website v3",
-    image: management,
-    description: "A personal portfolio website showcasing my projects and skills.",
-    tech_stack: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    preview_url: "https://myportfolio.com",
-    type: "frontend"
-  },
-  {
-    id: 4,
-    name: "Portfolio Website v3",
-    image: management,
-    description: "A personal portfolio website showcasing my projects and skills.",
-    tech_stack: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    preview_url: "https://myportfolio.com",
-    type: "frontend"
-  },
-];
-
 const RecentProjects = () => {
-
-
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
 
   useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/portfolio/projects');
+        const data = await response.json();
+
+        // Check if response is successful and data is an array
+        if (!response.ok || !Array.isArray(data)) {
+          console.error('Error fetching projects:', data);
+          setAllProjects([]);
+          return;
+        }
+
+        setAllProjects(data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setAllProjects([]);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (allProjects.length === 0) return;
+
     const cardsWrappers = gsap.utils.toArray(".card-wrapper") as HTMLElement[];
     const cards = gsap.utils.toArray(".card") as HTMLElement[];
 
@@ -62,7 +46,7 @@ const RecentProjects = () => {
       const card = cards[i];
       let scale = 1;
       let rotation = 0;
-      if (i !== cards.length -1) {
+      if (i !== cards.length - 1) {
         scale = 0.9 + 0.025 * i;
         rotation = -10;
       }
@@ -88,7 +72,7 @@ const RecentProjects = () => {
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [allProjects]);
 
 
   return (
@@ -121,6 +105,8 @@ const RecentProjects = () => {
                   <Image
                     src={project.image}
                     alt={project.name}
+                    width={400}
+                    height={300}
                   />
                 </div>
               </div>

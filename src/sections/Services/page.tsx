@@ -2,29 +2,34 @@
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
 import Image from "next/image";
-import frontend from "@/assets/services/frontend.webp"
-import fullstack from "@/assets/services/fullstack.webp"
-import wordpress from "@/assets/services/wordpress.webp"
-
-const allServices = [
-    {
-        title: "Frontend Development",
-        description: "Building responsive, high-performance, and visually appealing web interfaces",
-        image: frontend,
-    },
-    {
-        title: "Full Stack Development",
-        description: "Creating scalable web applications with modern frontend and backend technologies",
-        image: fullstack,
-    },
-    {
-        title: "WordPress Development",
-        description: "Developing custom WordPress themes, plugins, and optimized websites",
-        image: wordpress,
-    }
-]
+import { useEffect, useState } from 'react';
+import { Service } from '@/types/portfolio';
 
 const Services = () => {
+    const [allServices, setAllServices] = useState<Service[]>([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await fetch('/api/portfolio/services');
+                const data = await response.json();
+
+                // Check if response is successful and data is an array
+                if (!response.ok || !Array.isArray(data)) {
+                    console.error('Error fetching services:', data);
+                    setAllServices([]);
+                    return;
+                }
+
+                setAllServices(data);
+            } catch (error) {
+                console.error('Error fetching services:', error);
+                setAllServices([]);
+            }
+        };
+
+        fetchServices();
+    }, []);
 
     return (
         <motion.div
@@ -43,7 +48,7 @@ const Services = () => {
                 {
                     allServices.map((service, index) => (
                         <div key={index} className="lg:w-1/3  border border-[#ABB2BF] rounded-lg px-7 py-4 flex flex-col gap-3">
-                            <Image src={service?.image} alt="" className="w-40 rounded-lg" />
+                            <Image src={service?.image} alt={service.title} width={160} height={120} className="w-40 rounded-lg" />
                             <span className="text-2xl font-semibold">{service.title}</span>
                             <p className="text-base font-normal">{service.description}</p>
                         </div>
