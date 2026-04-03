@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { supabase } from '@/lib/supabase/client';
+import { readPortfolioData } from '@/lib/dataManager';
 
 export async function GET() {
     try {
@@ -37,10 +39,17 @@ export async function GET() {
 
         return NextResponse.json(portfolioData);
     } catch (error) {
-        console.error('Error fetching portfolio data:', error);
-        return NextResponse.json(
-            { error: 'Failed to fetch portfolio data' },
-            { status: 500 }
-        );
+        console.error('Error fetching portfolio data from Supabase, falling back to JSON:', error);
+
+        try {
+            const fallbackData = await readPortfolioData();
+            return NextResponse.json(fallbackData);
+        } catch (fallbackError) {
+            console.error('Fallback to JSON also failed:', fallbackError);
+            return NextResponse.json(
+                { error: 'Failed to fetch portfolio data from both Supabase and fallback' },
+                { status: 500 }
+            );
+        }
     }
 }

@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { supabaseAdmin } from '@/lib/supabase/server';
 import { supabase } from '@/lib/supabase/client';
 import { verifyAuth, unauthorizedResponse } from '@/lib/auth';
+import { readPortfolioData, updateSkills } from '@/lib/dataManager';
+import { Skill } from '@/types/portfolio';
 
 // GET - Fetch all skills
 export async function GET() {
@@ -12,33 +15,35 @@ export async function GET() {
             .order('category', { ascending: true })
             .order('name', { ascending: true });
 
-        if (error) {
-            console.error('Error fetching skills:', error);
-            return NextResponse.json(
-                { error: 'Failed to fetch skills' },
-                { status: 500 }
-            );
-        }
+        if (error) throw error;
 
         return NextResponse.json(data || []);
     } catch (error) {
-        console.error('Error fetching skills:', error);
-        return NextResponse.json(
-            { error: 'Failed to fetch skills' },
-            { status: 500 }
-        );
+        console.error('Error fetching skills from Supabase, falling back to JSON:', error);
+
+        try {
+            const fallbackData = await readPortfolioData();
+            return NextResponse.json(fallbackData.skills || []);
+        } catch (fallbackError) {
+            console.error('Fallback to JSON also failed:', fallbackError);
+            return NextResponse.json(
+                { error: 'Failed to fetch skills from both Supabase and fallback' },
+                { status: 500 }
+            );
+        }
     }
 }
 
 // POST - Add new skill
 export async function POST(request: NextRequest) {
+    let skillData: any;
     try {
         const isAuthenticated = await verifyAuth();
         if (!isAuthenticated) {
             return unauthorizedResponse();
         }
 
-        const skillData = await request.json();
+        skillData = await request.json();
 
         const { data, error } = await supabaseAdmin
             .from('skills')
@@ -50,33 +55,54 @@ export async function POST(request: NextRequest) {
             .select()
             .single();
 
-        if (error) {
-            console.error('Error adding skill:', error);
+        if (error) throw error;
+
+        // Dual-Sync: Update JSON backup as well
+        try {
+            const portfolioData = await readPortfolioData();
+            portfolioData.skills.push(data);
+            await updateSkills(portfolioData.skills);
+        } catch (jsonError) {
+            console.error('Error updating JSON backup (Supabase succeeded):', jsonError);
+        }
+
+        return NextResponse.json({ success: true, data, source: 'supabase' });
+    } catch (error) {
+        console.error('Error adding skill to Supabase, falling back to JSON:', error);
+
+        try {
+            const data = await readPortfolioData();
+            const newSkill: Skill = {
+                id: crypto.randomUUID(),
+                name: skillData.name,
+                image: skillData.image,
+                category: skillData.category,
+            };
+
+            data.skills.push(newSkill);
+            await updateSkills(data.skills);
+
+            return NextResponse.json({ success: true, data: newSkill, source: 'fallback' });
+        } catch (fallbackError) {
+            console.error('Fallback to JSON also failed:', fallbackError);
             return NextResponse.json(
-                { error: 'Failed to add skill' },
+                { error: 'Failed to add skill to both Supabase and fallback' },
                 { status: 500 }
             );
         }
-
-        return NextResponse.json({ success: true, data });
-    } catch (error) {
-        console.error('Error adding skill:', error);
-        return NextResponse.json(
-            { error: 'Failed to add skill' },
-            { status: 500 }
-        );
     }
 }
 
 // PUT - Update skill
 export async function PUT(request: NextRequest) {
+    let skillData: any;
     try {
         const isAuthenticated = await verifyAuth();
         if (!isAuthenticated) {
             return unauthorizedResponse();
         }
 
-        const skillData = await request.json();
+        skillData = await request.json();
 
         if (!skillData.id) {
             return NextResponse.json(
@@ -96,26 +122,54 @@ export async function PUT(request: NextRequest) {
             .select()
             .single();
 
-        if (error) {
-            console.error('Error updating skill:', error);
+        if (error) throw error;
+
+        // Dual-Sync: Update JSON backup as well
+        try {
+            const portfolioData = await readPortfolioData();
+            const index = portfolioData.skills.findIndex((s: Skill) => s.id === data.id);
+            if (index !== -1) {
+                portfolioData.skills[index] = data;
+                await updateSkills(portfolioData.skills);
+            }
+        } catch (jsonError) {
+            console.error('Error updating JSON backup (Supabase succeeded):', jsonError);
+        }
+
+        return NextResponse.json({ success: true, data, source: 'supabase' });
+    } catch (error) {
+        console.error('Error updating skill in Supabase, falling back to JSON:', error);
+
+        try {
+            const data = await readPortfolioData();
+            const index = data.skills.findIndex((s: Skill) => s.id === skillData.id);
+
+            if (index === -1) {
+                return NextResponse.json({ error: 'Skill not found in fallback data' }, { status: 404 });
+            }
+
+            data.skills[index] = {
+                ...data.skills[index],
+                name: skillData.name,
+                image: skillData.image,
+                category: skillData.category,
+            };
+
+            await updateSkills(data.skills);
+            return NextResponse.json({ success: true, data: data.skills[index], source: 'fallback' });
+        } catch (fallbackError) {
+            console.error('Fallback to JSON also failed:', fallbackError);
             return NextResponse.json(
-                { error: 'Failed to update skill' },
+                { error: 'Failed to update skill in both Supabase and fallback' },
                 { status: 500 }
             );
         }
-
-        return NextResponse.json({ success: true, data });
-    } catch (error) {
-        console.error('Error updating skill:', error);
-        return NextResponse.json(
-            { error: 'Failed to update skill' },
-            { status: 500 }
-        );
     }
 }
 
 // DELETE - Delete skill
 export async function DELETE(request: NextRequest) {
+    let id: string | null = null;
     try {
         const isAuthenticated = await verifyAuth();
         if (!isAuthenticated) {
@@ -123,7 +177,7 @@ export async function DELETE(request: NextRequest) {
         }
 
         const { searchParams } = new URL(request.url);
-        const id = searchParams.get('id');
+        id = searchParams.get('id');
 
         if (!id) {
             return NextResponse.json(
@@ -137,20 +191,38 @@ export async function DELETE(request: NextRequest) {
             .delete()
             .eq('id', id);
 
-        if (error) {
-            console.error('Error deleting skill:', error);
+        if (error) throw error;
+
+        // Dual-Sync: Update JSON backup as well
+        try {
+            const portfolioData = await readPortfolioData();
+            portfolioData.skills = portfolioData.skills.filter((s: Skill) => s.id !== id);
+            await updateSkills(portfolioData.skills);
+        } catch (jsonError) {
+            console.error('Error updating JSON backup (Supabase succeeded):', jsonError);
+        }
+
+        return NextResponse.json({ success: true, source: 'supabase' });
+    } catch (error) {
+        console.error('Error deleting skill from Supabase, falling back to JSON:', error);
+
+        try {
+            const data = await readPortfolioData();
+            const initialLength = data.skills.length;
+            data.skills = data.skills.filter((s: Skill) => s.id !== id);
+
+            if (data.skills.length === initialLength) {
+                return NextResponse.json({ error: 'Skill not found in fallback data' }, { status: 404 });
+            }
+
+            await updateSkills(data.skills);
+            return NextResponse.json({ success: true, source: 'fallback' });
+        } catch (fallbackError) {
+            console.error('Fallback to JSON also failed:', fallbackError);
             return NextResponse.json(
-                { error: 'Failed to delete skill' },
+                { error: 'Failed to delete skill from both Supabase and fallback' },
                 { status: 500 }
             );
         }
-
-        return NextResponse.json({ success: true });
-    } catch (error) {
-        console.error('Error deleting skill:', error);
-        return NextResponse.json(
-            { error: 'Failed to delete skill' },
-            { status: 500 }
-        );
     }
 }

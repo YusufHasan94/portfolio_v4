@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Skill } from '@/types/portfolio';
-import { FiEdit2, FiTrash2, FiPlus } from 'react-icons/fi';
+import { FiEdit2, FiTrash2, FiPlus, FiUpload } from 'react-icons/fi';
+import Image from 'next/image';
 
 export default function SkillsAdmin() {
     const [skills, setSkills] = useState<Skill[]>([]);
@@ -10,6 +11,8 @@ export default function SkillsAdmin() {
     const [showForm, setShowForm] = useState(false);
     const [editingSkill, setEditingSkill] = useState<Skill | null>(null);
     const [formData, setFormData] = useState({ name: '', image: '', category: 1 as 1 | 2 });
+    const [uploading, setUploading] = useState(false);
+    const [uploadedFileName, setUploadedFileName] = useState('');
     const [message, setMessage] = useState('');
 
     useEffect(() => {
@@ -26,6 +29,42 @@ export default function SkillsAdmin() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleIconUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploading(true);
+        setUploadedFileName(file.name);
+
+        const formDataObj = new FormData();
+        formDataObj.append('file', file);
+        formDataObj.append('folder', 'skills');
+
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formDataObj,
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                setFormData(prev => ({ ...prev, image: data.url }));
+            } else {
+                setUploadedFileName('');
+            }
+        } catch (error) {
+            console.error('Error uploading icon:', error);
+            setUploadedFileName('');
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const resetForm = () => {
+        setFormData({ name: '', image: '', category: 1 });
+        setUploadedFileName('');
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -49,7 +88,7 @@ export default function SkillsAdmin() {
                 setMessage(editingSkill ? 'Skill updated!' : 'Skill added!');
                 setShowForm(false);
                 setEditingSkill(null);
-                setFormData({ name: '', image: '', category: 1 });
+                resetForm();
                 fetchSkills();
             }
         } catch (error) {
@@ -61,6 +100,8 @@ export default function SkillsAdmin() {
     const handleEdit = (skill: Skill) => {
         setEditingSkill(skill);
         setFormData({ name: skill.name, image: skill.image, category: skill.category });
+        // Show the last segment of the URL as the "filename" when editing
+        setUploadedFileName(skill.image ? skill.image.split('/').pop() || '' : '');
         setShowForm(true);
     };
 
@@ -93,7 +134,7 @@ export default function SkillsAdmin() {
                     onClick={() => {
                         setShowForm(!showForm);
                         setEditingSkill(null);
-                        setFormData({ name: '', image: '', category: 1 });
+                        resetForm();
                     }}
                     className="flex items-center gap-2 bg-[#C778DD] hover:bg-[#C778DD]/90 text-white px-4 py-2 rounded-lg transition-colors"
                 >
@@ -126,15 +167,33 @@ export default function SkillsAdmin() {
                         </div>
 
                         <div>
-                            <label className="block text-white font-medium mb-2">Icon Path</label>
-                            <input
-                                type="text"
-                                value={formData.image}
-                                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                className="w-full px-4 py-3 bg-[#2c3036] border border-[#ABB2BF] rounded-lg text-white focus:outline-none focus:border-[#C778DD]"
-                                placeholder="/assets/icons/skill.svg"
-                                required
-                            />
+                            <label className="block text-white font-medium mb-2">Skill Icon</label>
+                            <label className={`flex items-center gap-3 w-full px-4 py-3 bg-[#2c3036] border rounded-lg cursor-pointer transition-colors ${uploading ? 'border-[#C778DD] opacity-70' : 'border-[#ABB2BF] hover:border-[#C778DD]'}`}>
+                                <FiUpload className="text-[#C778DD] shrink-0" />
+                                <span className={`text-sm truncate ${uploadedFileName ? 'text-white' : 'text-[#ABB2BF]'}`}>
+                                    {uploading ? 'Uploading…' : uploadedFileName || 'Click to upload icon'}
+                                </span>
+                                <input
+                                    type="file"
+                                    accept="image/*,.svg"
+                                    onChange={handleIconUpload}
+                                    className="hidden"
+                                    disabled={uploading}
+                                />
+                            </label>
+                            {formData.image && !uploading && (
+                                <div className="mt-2 flex items-center gap-3">
+                                    <Image
+                                        src={formData.image}
+                                        alt="Icon preview"
+                                        width={40}
+                                        height={40}
+                                        className="rounded object-contain bg-[#2c3036] p-1"
+                                    />
+                                </div>
+                            )}
+                            {/* Hidden input to satisfy required validation once image is set */}
+                            <input type="hidden" value={formData.image} required />
                         </div>
                     </div>
 
@@ -153,7 +212,8 @@ export default function SkillsAdmin() {
                     <div className="flex gap-2">
                         <button
                             type="submit"
-                            className="bg-[#C778DD] hover:bg-[#C778DD]/90 text-white px-6 py-2 rounded-lg transition-colors"
+                            disabled={!formData.image || uploading}
+                            className="bg-[#C778DD] hover:bg-[#C778DD]/90 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-2 rounded-lg transition-colors"
                         >
                             {editingSkill ? 'Update' : 'Add'} Skill
                         </button>
@@ -162,7 +222,7 @@ export default function SkillsAdmin() {
                             onClick={() => {
                                 setShowForm(false);
                                 setEditingSkill(null);
-                                setFormData({ name: '', image: '', category: 1 });
+                                resetForm();
                             }}
                             className="bg-[#2c3036] hover:bg-[#2c3036]/80 text-white px-6 py-2 rounded-lg transition-colors"
                         >
@@ -173,11 +233,21 @@ export default function SkillsAdmin() {
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
                 {skills && skills.length > 0 && skills.map((skill) => (
                     <div key={skill.id} className="bg-[#1e2024] border border-[#ABB2BF] rounded-lg p-4">
                         <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-white font-semibold">{skill.name}</h3>
+                            <div className="flex items-center gap-3">
+                                {skill.image && (
+                                    <Image
+                                        src={skill.image}
+                                        alt={skill.name}
+                                        width={32}
+                                        height={32}
+                                        className="object-contain"
+                                    />
+                                )}
+                                <h3 className="text-white font-semibold">{skill.name}</h3>
+                            </div>
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => handleEdit(skill)}
@@ -193,8 +263,8 @@ export default function SkillsAdmin() {
                                 </button>
                             </div>
                         </div>
-                        <p className="text-[#ABB2BF] text-sm mb-2">Category: {skill.category}</p>
-                        <p className="text-[#ABB2BF] text-sm break-all">{skill.image}</p>
+                        <p className="text-[#ABB2BF] text-sm mb-1">Category: {skill.category}</p>
+                        <p className="text-[#ABB2BF] text-xs break-all truncate">{skill.image?.split('/').pop()}</p>
                     </div>
                 ))}
             </div>

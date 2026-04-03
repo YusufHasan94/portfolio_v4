@@ -1,7 +1,7 @@
 'use client'
 import { motion } from "framer-motion";
 import { fadeIn } from '@/app/variants';
-import Image from "next/image";
+
 import Marquee from "react-fast-marquee";
 import { useEffect, useState } from 'react';
 import { Skill } from '@/types/portfolio';
@@ -52,7 +52,10 @@ const Expertise = () => {
             <div
               key={index}
               className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
-              <Image src={skill?.image} alt={skill.name} width={48} height={48} className="w-8 lg:w-12" />
+              {skill.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={skill.image} alt={skill.name} className="w-8 lg:w-12 h-8 lg:h-12 object-contain" />
+              )}
               <span className="text-base font-medium text-[#fff] capitalize">
                 {skill.name}
               </span>
@@ -65,7 +68,10 @@ const Expertise = () => {
             <div
               key={index}
               className="flex items-center justify-around gap-4 border border-[#C778DD] px-2.5 py-1 lg:px-2.5 lg:py-2.5 rounded-xl cursor-pointer bg-[#FFF]/5 min-w[160px] lg:min-w-[180px] mx-5">
-              <Image src={skill?.image} alt={skill.name} width={48} height={48} className="w-8 lg:w-12" />
+              {skill.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={skill.image} alt={skill.name} className="w-8 lg:w-12 h-8 lg:h-12 object-contain" />
+              )}
               <span className="text-base font-medium text-[#fff] capitalize">
                 {skill.name}
               </span>
