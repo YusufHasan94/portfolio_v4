@@ -1,0 +1,167 @@
+{
+  "hero": {
+    "title": "Software Engineer",
+    "subtitle": "with DevOps Expertise",
+    "description": "Focused on delivering impactful and scalable digital solutions.",
+    "currentStatus": "Currently working on Portfolio"
+  },
+  "skills": [
+    {
+      "id": "skill-1",
+      "name": "HTML",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284634278-w46bfo.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-2",
+      "name": "CSS",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284685996-dm7bt7.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-3",
+      "name": "JavaScript",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284702431-oh25he.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-4",
+      "name": "TypeScript",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284713335-6htm0n.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-5",
+      "name": "Tailwind",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284725634-hd4hpr.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-6",
+      "name": "Wordpress",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284939652-q8i34.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-7",
+      "name": "Elementor",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775285433086-hb4cln.svg",
+      "category": 1
+    },
+    {
+      "id": "skill-8",
+      "name": "React",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284915572-yvlnyv.svg",
+      "category": 2
+    },
+    {
+      "id": "skill-9",
+      "name": "Next",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284972448-bbk8m.svg",
+      "category": 2
+    },
+    {
+      "id": "skill-10",
+      "name": "Node",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284757082-tt2kg2.svg",
+      "category": 2
+    },
+    {
+      "id": "skill-11",
+      "name": "Express",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284925165-ykst1n.svg",
+      "category": 2
+    },
+    {
+      "id": "skill-12",
+      "name": "MongoDB",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284984309-38nefa.svg",
+      "category": 2
+    },
+    {
+      "id": "skill-13",
+      "name": "Docker",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284770760-k7bp69.svg",
+      "category": 2
+    },
+    {
+      "id": "skill-14",
+      "name": "AWS",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/skills/1775284903756-hr5gyj.svg",
+      "category": 2
+    }
+  ],
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Frontend Development",
+      "description": "Building modern, responsive interfaces using React, Next.js, and modern CSS frameworks to deliver fast and engaging user experiences.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775287793772-v3syr.webp"
+    },
+    {
+      "id": "service-2",
+      "title": "Full Stack Development",
+      "description": "Developing scalable web applications with Node.js, Express, and MongoDB, handling everything from backend logic to frontend integration.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775287813458-nw4nsp.jpg"
+    },
+    {
+      "id": "service-3",
+      "title": "WordPress Development",
+      "description": "Creating custom WordPress websites using modern themes, Elementor, and performance-focused development.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775287830532-zq3mu.webp"
+    },
+    {
+      "id": "b7bb0fd8-821b-4abd-b436-a62f41f959df",
+      "title": "Website Performance Optimization",
+      "description": "Improving website speed and Core Web Vitals with advanced optimization techniques and best practices.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775287849755-g44pv6.png",
+      "created_at": "2026-04-04T07:11:15.161574+00:00",
+      "updated_at": "2026-04-04T07:30:51.881103+00:00"
+    },
+    {
+      "id": "c8d72598-064d-41da-a6e2-5d690815e032",
+      "title": "Cloud Deployment & DevOps",
+      "description": "Deploying and managing applications using Docker, AWS, and cloud infrastructure for reliable and scalable systems.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775287912565-bxkst.jpg",
+      "created_at": "2026-04-04T07:12:02.63152+00:00",
+      "updated_at": "2026-04-04T07:31:55.068106+00:00"
+    },
+    {
+      "id": "fffbea05-d4b0-4f5b-91ba-0aafadf14af1",
+      "title": "API Development & Integration",
+      "description": "Designing secure REST APIs and integrating third-party services to power modern applications.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775287877565-lr0jd9.webp",
+      "created_at": "2026-04-04T07:12:37.499431+00:00",
+      "updated_at": "2026-04-04T07:31:19.838342+00:00"
+    }
+  ],
+  "projects": [
+    {
+      "id": "b4473bd0-41e4-4e14-adb7-168fd3d57f58",
+      "name": "Pienteger – Corporate Website",
+      "description": "A corporate website showcasing company services, projects, and organizational information with a focus on modern design and smooth\nuser interaction.",
+      "image": "https://misypnhxhtkwqnvxzbpi.supabase.co/storage/v1/object/public/portfolio/projects/1775236997517-tvyd67.png",
+      "preview_url": "https://pienteger.com/",
+      "type": "frontend",
+      "tech_stack": [
+        "Next JS",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Swiper"
+      ],
+      "created_at": "2026-04-03T17:23:23.645201+00:00",
+      "updated_at": "2026-04-03T17:23:23.645201+00:00"
+    }
+  ],
+  "career": [
+    {
+      "id": "career-1",
+      "company": "Vivasoft Limited",
+      "company_url": "https://vivasoftltd.com/",
+      "title": "Software Engineer L-1",
+      "description": "I specialize in developing high-performance WordPress websites with optimization, handling DevOps tasks for streamlined deployment, and building dynamic frontend interfaces using React UI library for seamless user experiences.",
+      "starting": "March, 2024",
+      "ending": "present"
+    }
+  ]
+}

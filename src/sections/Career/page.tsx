@@ -5,19 +5,34 @@ import Accordion from "@/components/Accordion";
 import dots from "@/assets/dots.png";
 import pattern from "@/assets/pattern.png";
 import Image from "next/image";
-
-const allMilestones = [
-    {
-        company: "Vivasoft Limited",
-        company_url: "https://vivasoftltd.com/",
-        title: "Software Engineer L-1",
-        description: "I specialize in developing high-performance WordPress websites with optimization, handling DevOps tasks for streamlined deployment, and building dynamic frontend interfaces using React UI library for seamless user experiences.",
-        starting: "March, 2024",
-        ending: "present",
-    },
-]
+import { useEffect, useState } from 'react';
+import { CareerMilestone } from '@/types/portfolio';
 
 const Career = () => {
+    const [allMilestones, setAllMilestones] = useState<CareerMilestone[]>([]);
+
+    useEffect(() => {
+        const fetchCareer = async () => {
+            try {
+                const response = await fetch('/api/portfolio/career');
+                const data = await response.json();
+
+                // Check if response is successful and data is an array
+                if (!response.ok || !Array.isArray(data)) {
+                    console.error('Error fetching career data:', data);
+                    setAllMilestones([]);
+                    return;
+                }
+
+                setAllMilestones(data);
+            } catch (error) {
+                console.error('Error fetching career data:', error);
+                setAllMilestones([]);
+            }
+        };
+
+        fetchCareer();
+    }, []);
 
     return (
         <motion.div
@@ -44,9 +59,9 @@ const Career = () => {
                     }
                 </div>
                 <div className="w-full lg:w-1/2 min-h-[282px] relative mt-12 lg:mt-0">
-                    <Image src={pattern} alt="pattern" className="absolute bottom-0 left-5"/>
-                    <Image src={dots} alt="dots" className="absolute top-0 left-20"/>
-                    <Image src={dots} alt="dots" className="absolute bottom-10 right-[250px]"/>
+                    <Image src={pattern} alt="pattern" className="absolute bottom-0 left-5" />
+                    <Image src={dots} alt="dots" className="absolute top-0 left-20" />
+                    <Image src={dots} alt="dots" className="absolute bottom-10 right-[250px]" />
                     <div className="size-[86px] border border-[#ABB2BF] absolute top-0 right-[150px]"></div>
                     <div className="size-[52px] border border-[#ABB2BF] absolute bottom-0 right-[95px]"></div>
 
