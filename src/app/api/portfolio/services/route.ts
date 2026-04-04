@@ -36,15 +36,19 @@ export async function GET() {
 
 // POST - Add new service
 export async function POST(request: NextRequest) {
-    let serviceData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let serviceData: Service;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         serviceData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('services')
             .insert({
@@ -74,9 +78,9 @@ export async function POST(request: NextRequest) {
             const data = await readPortfolioData();
             const newService: Service = {
                 id: crypto.randomUUID(),
-                title: serviceData.title,
-                description: serviceData.description,
-                image: serviceData.image,
+                title: serviceData.title || '',
+                description: serviceData.description || '',
+                image: serviceData.image || '',
             };
 
             data.services.push(newService);
@@ -95,22 +99,26 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update service
 export async function PUT(request: NextRequest) {
-    let serviceData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let serviceData: Service;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         serviceData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
-        if (!serviceData.id) {
-            return NextResponse.json(
-                { error: 'Service ID is required' },
-                { status: 400 }
-            );
-        }
+    if (!serviceData.id) {
+        return NextResponse.json(
+            { error: 'Service ID is required' },
+            { status: 400 }
+        );
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('services')
             .update({
@@ -150,9 +158,9 @@ export async function PUT(request: NextRequest) {
 
             data.services[index] = {
                 ...data.services[index],
-                title: serviceData.title,
-                description: serviceData.description,
-                image: serviceData.image,
+                title: serviceData.title || data.services[index].title,
+                description: serviceData.description || data.services[index].description,
+                image: serviceData.image || data.services[index].image,
             };
 
             await updateServices(data.services);

@@ -36,15 +36,19 @@ export async function GET() {
 
 // POST - Add new skill
 export async function POST(request: NextRequest) {
-    let skillData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let skillData: Skill;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         skillData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('skills')
             .insert({
@@ -74,9 +78,9 @@ export async function POST(request: NextRequest) {
             const data = await readPortfolioData();
             const newSkill: Skill = {
                 id: crypto.randomUUID(),
-                name: skillData.name,
-                image: skillData.image,
-                category: skillData.category,
+                name: skillData.name || '',
+                image: skillData.image || '',
+                category: skillData.category || 1,
             };
 
             data.skills.push(newSkill);
@@ -95,22 +99,26 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update skill
 export async function PUT(request: NextRequest) {
-    let skillData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let skillData: Skill;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         skillData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
-        if (!skillData.id) {
-            return NextResponse.json(
-                { error: 'Skill ID is required' },
-                { status: 400 }
-            );
-        }
+    if (!skillData.id) {
+        return NextResponse.json(
+            { error: 'Skill ID is required' },
+            { status: 400 }
+        );
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('skills')
             .update({
@@ -150,9 +158,9 @@ export async function PUT(request: NextRequest) {
 
             data.skills[index] = {
                 ...data.skills[index],
-                name: skillData.name,
-                image: skillData.image,
-                category: skillData.category,
+                name: skillData.name || data.skills[index].name,
+                image: skillData.image || data.skills[index].image,
+                category: skillData.category || data.skills[index].category,
             };
 
             await updateSkills(data.skills);

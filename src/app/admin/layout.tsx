@@ -10,17 +10,17 @@ export default function AdminLayout({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
-
-    // If on login page, render children directly without admin layout
-    if (pathname === '/admin/login') {
-        return <>{children}</>;
-    }
-
+    const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
-    const router = useRouter();
 
     useEffect(() => {
+        // If on login page, don't perform auth check
+        if (pathname === '/admin/login') {
+            setLoading(false);
+            return;
+        }
+
         const checkAuth = async () => {
             try {
                 const response = await fetch('/api/auth/check');
@@ -40,7 +40,11 @@ export default function AdminLayout({
         };
 
         checkAuth();
-    }, [router]);
+    }, [router, pathname]);
+
+    if (pathname === '/admin/login') {
+        return <>{children}</>;
+    }
 
     if (loading) {
         return (

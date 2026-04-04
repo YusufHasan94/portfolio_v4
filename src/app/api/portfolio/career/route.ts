@@ -35,15 +35,19 @@ export async function GET() {
 
 // POST - Add new career milestone
 export async function POST(request: NextRequest) {
-    let careerData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let careerData: CareerMilestone;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         careerData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('career')
             .insert({
@@ -76,12 +80,12 @@ export async function POST(request: NextRequest) {
             const data = await readPortfolioData();
             const newCareer: CareerMilestone = {
                 id: crypto.randomUUID(),
-                company: careerData.company,
-                company_url: careerData.company_url,
-                title: careerData.title,
-                description: careerData.description,
-                starting: careerData.starting,
-                ending: careerData.ending,
+                company: careerData.company || '',
+                company_url: careerData.company_url || '',
+                title: careerData.title || '',
+                description: careerData.description || '',
+                starting: careerData.starting || '',
+                ending: careerData.ending || '',
             };
 
             data.career.push(newCareer);
@@ -100,22 +104,26 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update career milestone
 export async function PUT(request: NextRequest) {
-    let careerData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let careerData: CareerMilestone;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         careerData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
-        if (!careerData.id) {
-            return NextResponse.json(
-                { error: 'Career ID is required' },
-                { status: 400 }
-            );
-        }
+    if (!careerData.id) {
+        return NextResponse.json(
+            { error: 'Career ID is required' },
+            { status: 400 }
+        );
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('career')
             .update({
@@ -158,12 +166,12 @@ export async function PUT(request: NextRequest) {
 
             data.career[index] = {
                 ...data.career[index],
-                company: careerData.company,
-                company_url: careerData.company_url,
-                title: careerData.title,
-                description: careerData.description,
-                starting: careerData.starting,
-                ending: careerData.ending,
+                company: careerData.company || data.career[index].company,
+                company_url: careerData.company_url || data.career[index].company_url,
+                title: careerData.title || data.career[index].title,
+                description: careerData.description || data.career[index].description,
+                starting: careerData.starting || data.career[index].starting,
+                ending: careerData.ending || data.career[index].ending,
             };
 
             await updateCareer(data.career);

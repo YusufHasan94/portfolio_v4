@@ -4,6 +4,7 @@ import { supabaseAdmin } from '@/lib/supabase/server';
 import { supabase } from '@/lib/supabase/client';
 import { verifyAuth, unauthorizedResponse } from '@/lib/auth';
 import { readPortfolioData, updateHeroData } from '@/lib/dataManager';
+import { HeroData } from '@/types/portfolio';
 
 export async function GET() {
     try {
@@ -15,7 +16,7 @@ export async function GET() {
         if (error) throw error;
 
         // Transform database fields to match frontend expectations
-        const heroData = {
+        const heroData: HeroData = {
             title: data.title,
             subtitle: data.subtitle,
             description: data.description,
@@ -40,15 +41,19 @@ export async function GET() {
 }
 
 export async function PUT(request: NextRequest) {
-    let heroData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let heroData: HeroData & { id?: string };
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         heroData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
+    try {
         // Update database
         const { error } = await supabaseAdmin
             .from('hero')
@@ -58,7 +63,7 @@ export async function PUT(request: NextRequest) {
                 description: heroData.description,
                 current_status: heroData.currentStatus,
             })
-            .eq('id', heroData.id);
+            .eq('id', heroData.id || 1); // Hero usually has single record
 
         if (error) throw error;
 

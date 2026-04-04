@@ -36,15 +36,19 @@ export async function GET() {
 
 // POST - Add new project
 export async function POST(request: NextRequest) {
-    let projectData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let projectData: Project;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         projectData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
+    try {
         const { data, error } = await supabaseAdmin
             .from('projects')
             .insert({
@@ -77,12 +81,12 @@ export async function POST(request: NextRequest) {
             const data = await readPortfolioData();
             const newProject: Project = {
                 id: crypto.randomUUID(),
-                name: projectData.name,
-                description: projectData.description,
-                image: projectData.image,
-                preview_url: projectData.preview_url,
-                type: projectData.type,
-                tech_stack: projectData.tech_stack,
+                name: projectData.name || '',
+                description: projectData.description || '',
+                image: projectData.image || '',
+                preview_url: projectData.preview_url || '',
+                type: projectData.type || '',
+                tech_stack: projectData.tech_stack || [],
             };
 
             data.projects.push(newProject);
@@ -101,22 +105,26 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update project
 export async function PUT(request: NextRequest) {
-    let projectData: any;
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return unauthorizedResponse();
+    }
+
+    let projectData: Project;
     try {
-        const isAuthenticated = await verifyAuth();
-        if (!isAuthenticated) {
-            return unauthorizedResponse();
-        }
-
         projectData = await request.json();
+    } catch {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
-        if (!projectData.id) {
-            return NextResponse.json(
-                { error: 'Project ID is required' },
-                { status: 400 }
-            );
-        }
+    if (!projectData.id) {
+        return NextResponse.json(
+            { error: 'Project ID is required' },
+            { status: 400 }
+        );
+    }
 
+    try {
         // Get old project data to delete old image if changed
         const { data: oldProject } = await supabaseAdmin
             .from('projects')

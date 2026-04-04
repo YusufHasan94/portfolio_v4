@@ -26,7 +26,7 @@ export async function uploadFile(
         const buffer = new Uint8Array(arrayBuffer);
 
         // Upload to Supabase Storage
-        const { data, error } = await supabaseAdmin.storage
+        const { error } = await supabaseAdmin.storage
             .from(BUCKET_NAME)
             .upload(filePath, buffer, {
                 contentType: file.type,
