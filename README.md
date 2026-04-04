@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Portfolio V4
 
 A modern, full-stack developer portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Supabase**. Features a live-updating public portfolio and a password-protected admin dashboard to manage all content dynamically.
@@ -336,6 +335,3 @@ This project is private and personal. All rights reserved.
 
 
 --- adding new commnads and other instructions.
-=======
-### README ABOUT PORTFOLIO
->>>>>>> master
