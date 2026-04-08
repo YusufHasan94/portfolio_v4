@@ -1,0 +1,29 @@
+name: Deploy with Docker
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy Application
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          cd ${{ secrets.APP_DIR }}
+
+          echo "Pull latest code"
+          git pull origin master
+
+          echo "Rebuild container"
+          docker compose down
+          docker compose build
+          docker compose up -d
+
+          echo "Cleanup old images"
+          docker image prune -f
+          EOF
