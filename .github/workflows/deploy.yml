@@ -15,6 +15,6 @@ jobs:
 
       - name: Deploy Application
         run: |
-          cd /home/deploy/app
+          cd /home/ubuntu/portfolio_v4
           git pull origin main
           docker compose up -d --build
