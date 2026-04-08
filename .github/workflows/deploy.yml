@@ -1,4 +1,4 @@
-name: Deploy with Docker
+name: Deploy Docker App
 
 on:
   push:
@@ -7,23 +7,14 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Deploy Application
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-          cd ${{ secrets.APP_DIR }}
-
-          echo "Pull latest code"
-          git pull origin master
-
-          echo "Rebuild container"
-          docker compose down
-          docker compose build
-          docker compose up -d
-
-          echo "Cleanup old images"
-          docker image prune -f
-          EOF
+          cd /home/deploy/app
+          git pull origin main
+          docker compose up -d --build
