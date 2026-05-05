@@ -80,7 +80,7 @@ portfolio_v4/
 ├── Dockerfile
 ├── Jenkinsfile
 ├── next.config.ts
-└── .env.local                  # Local environment variables (not committed)
+└── .env                  # Local environment variables (not committed)
 ```
 
 ---
@@ -168,7 +168,7 @@ Also create a **Storage bucket** named `portfolio` (public read access for image
 
 ### 4. Configure Environment Variables
 
-Copy the example below and create a `.env.local` file at the project root:
+Copy the example below and create a `.env` file at the project root:
 
 ```env
 # Admin Dashboard Password
@@ -215,7 +215,7 @@ Open [http://localhost:3000/admin](http://localhost:3000/admin) to access the da
 | `SUPABASE_SERVICE_ROLE_KEY`   | ✅       | Service role key for privileged server operations|
 | `SUPABASE_STORAGE_BUCKET`     | ✅       | Name of the Supabase storage bucket              |
 
-> ⚠️ **Never commit `.env.local` to version control.** It is already listed in `.gitignore`.
+> ⚠️ **Never commit `.env` to version control.** It is already listed in `.gitignore`.
 
 ---
 
@@ -300,7 +300,7 @@ A `Dockerfile` is included for containerized deployment.
 docker build -t portfolio_v4 .
 
 # Run the container
-docker run -p 3000:3000 --env-file .env.local portfolio_v4
+docker run -p 3000:3000 --env-file .env portfolio_v4
 ```
 
 ### CI/CD with Jenkins

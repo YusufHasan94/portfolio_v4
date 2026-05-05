@@ -4,7 +4,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-    console.error('Missing environment variables. Make sure to run with --env-file=.env.local');
+    console.error('Missing environment variables. Make sure to run with --env-file=.env');
     process.exit(1);
 }
 
